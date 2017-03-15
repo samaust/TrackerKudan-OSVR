@@ -1,0 +1,36 @@
+/* The default config file, as used with the HDK, is fully auto-detected, so no configuration required. */
+/* See the JSON-Schema for server config or other samples to see possible options. */
+{
+    "drivers": [
+        // Combine OculusRift orientation with OculusRift position
+        {
+            "plugin": "com_samaust_trackerkudan_osvr",
+            "driver": "TrackerKudanFusion",
+            "params": {
+                "name": "Device0",
+				// 0 for RealSense camera
+				// 1 for generic webcam
+				"cameraType": 1,
+				// index starting at zero for generic webcam
+				"cameraIndex": 0,
+				// leave blank to use RS position directly
+				"position": "",
+				// Use other plugin position with fusion with Kudan to remove drift (not supported yet)
+                //"position": "/com_osvr_OculusRift/OculusRift0/semantic/hmd",
+				// Orientation will be passed to Kudan (it needs an orientation estimate to work)
+				"orientation": "/com_osvr_OculusRift/OculusRift0/semantic/hmd",
+                // Eyes are above and in front of the center of the head
+                "offsetFromRotationCenter": {
+                    "x": 0,
+                    "y": 0.01,
+                    "z": -0.05
+                },
+                // Pass the timestamp from the OculusRift data to OSVR
+                "timestamp": "position"
+            }
+        }
+    ],
+    "aliases": {
+        "/me/head": "/com_samaust_trackerkudan_osvr/Device0/tracker/0"
+    }
+}

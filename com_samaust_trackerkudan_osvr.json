@@ -1,0 +1,22 @@
+{
+	"deviceVendor": "camera vendeor",
+	"deviceName": "Tracker Fusion with Kudan position",
+	"author": "Samuel Austin",
+	"version": 1,
+	"lastModified": "2017-03-15T02:00:00.000Z",
+	"interfaces": {
+		"tracker": {
+			"position": true,
+			"orientation": true,
+			"count": 1
+		}
+	},
+  "semantic": {
+    "hmd": {
+      "$target": "tracker/0"
+    }
+  },
+  "automaticAliases": {
+    "/me/head": "semantic/hmd"
+  }
+}
